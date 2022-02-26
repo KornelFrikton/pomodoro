@@ -1,0 +1,80 @@
+.App {
+  text-align: center;
+}
+
+a:link,
+a:visited {
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+  background: #F5B82E;
+  line-height: 46.5px;
+  font-size: 20px;
+  font-weight: bold;
+  color: white;
+}
+
+a:hover {
+  background: #000000;
+  color: #F5B82E;
+}
+
+.menu {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  text-align: center;
+  justify-content: center;
+  padding-bottom: 20px;
+}
+
+.hideTimer {
+  display: none;
+}
+
+button {
+  padding: 10px;
+}
+
+.App-header {
+  background-color: #000000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  color: white;
+  flex-wrap: wrap;
+}
+
+.title {
+  font-size: 60px;
+}
+
+.logo img {
+  width: 100%;
+  display: block;
+}
+
+.focusQuestion {
+  width: 100%;
+  font-size: 50px;
+  font-weight: bold;
+  background-color: #F5B82E;
+  word-wrap: break-word;
+  padding-top:10px;
+  padding-bottom:10px;
+}
+
+.showTimer {
+  margin: auto;
+}
+
+.buttons {
+  padding-top: 20px;
+}
+
+.buttons [type=button],
+.buttons [type=reset] {
+  font-size: 20px;
+  padding: 20px;
+}
