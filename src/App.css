@@ -6,7 +6,7 @@ a:link,
 a:visited {
   padding: 10px 20px 10px 20px;
   text-decoration: none;
-  background: #F5B82E;
+  background: #f5b82e;
   line-height: 46.5px;
   font-size: 20px;
   font-weight: bold;
@@ -15,7 +15,7 @@ a:visited {
 
 a:hover {
   background: #000000;
-  color: #F5B82E;
+  color: #f5b82e;
 }
 
 .menu {
@@ -59,10 +59,10 @@ button {
   width: 100%;
   font-size: 50px;
   font-weight: bold;
-  background-color: #F5B82E;
+  background-color: #f5b82e;
   word-wrap: break-word;
-  padding-top:10px;
-  padding-bottom:10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 .showTimer {
@@ -73,8 +73,8 @@ button {
   padding-top: 20px;
 }
 
-.buttons [type=button],
-.buttons [type=reset] {
+.buttons [type="button"],
+.buttons [type="reset"] {
   font-size: 20px;
   padding: 20px;
 }

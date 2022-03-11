@@ -1,17 +1,17 @@
 .settings {
-    padding: 20px;
-    width: 100%;
+  padding: 20px;
+  width: 100%;
 }
 
 .colorSettings {
-    padding: 0px 20px 0px 20px;
-    text-align: center;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
+  padding: 0px 20px 0px 20px;
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .colorField {
-    padding: 0px 20px 0px 20px;
+  padding: 0px 20px 0px 20px;
 }

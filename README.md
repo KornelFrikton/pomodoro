@@ -1,24 +1,32 @@
 # THE ONE THING - Pomodoro React application
 
-This project was created to help users focusing on goals and spending as much time as possible with "The One Thing", that takes them the most forward.
+The most successful people are also the most productive. They are the ones who can make the most of their available time. This project was created to help users focusing on goals and spending as much time as possible with "The One Thing", that takes them the most forward.
 
-## How to use the app
+## Getting started
 
-- Set the focus question in the Focus menu
+The application is running in a browser (Google Chrome, Mozilla Firefox, etc.), this is not necessary to install any other applications.
 
-- Set the Pomodoro timer, short and long break timers in the Timer menu
+## How to use the application
 
-- Set the font and the color of your focus question in the Settings menu
+- Set your focus question in the **Focus** menu
 
-- Start the app's timer, when you decide to work on one of your daily tasks
+- Set the Pomodoro timer, short and long break timers in the **Timer** menu
 
-- Work on the task until the pomodoro timer chimers
+- Set the colors of your focus question and of the timer in the **Settings** menu
+
+- Start the app's timer, when you decide to start to focus on your goal
+
+- Work on it until the pomodoro timer chimers
 
 - Take a short break
 
 - After 3 pomodoros, stop and think about your focus question, then take a long break
 
-### Used third-party libraries
+## Built with
+
+Used [React](https://reactjs.org/) for implementation
+
+Used third-party libraries:
 
 - react-circular-progressbar: showing the remaining time (hh:mm:ss) and the progress
 
@@ -26,7 +34,14 @@ This project was created to help users focusing on goals and spending as much ti
 
 - react-router-dom: building the navbar of the application
 
-### Version
+## Version
 
-1.0 - 20/02/2022
-Publishing of the application
+*1.0 - 20/02/2022* - Publishing of the application
+
+## Author
+
+Kornel Frikton - [https://github.com/KornelFrikton](https://github.com/KornelFrikton)
+
+## Licence
+
+This application was built for fun, feel free to use it :)
