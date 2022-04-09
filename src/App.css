@@ -6,7 +6,6 @@ a:link,
 a:visited {
   padding: 10px 20px 10px 20px;
   text-decoration: none;
-  background: #f5b82e;
   line-height: 46.5px;
   font-size: 20px;
   font-weight: bold;
@@ -14,8 +13,13 @@ a:visited {
 }
 
 a:hover {
-  background: #000000;
   color: #f5b82e;
+}
+
+.MuiTabs-flexContainer {
+  flex-wrap: wrap;
+  border-top: 1px solid white;
+  border-bottom: 1px solid white;
 }
 
 .menu {
@@ -26,6 +30,7 @@ a:hover {
   text-align: center;
   justify-content: center;
   padding-bottom: 20px;
+  background-color: #000000;
 }
 
 .hideTimer {
@@ -59,7 +64,7 @@ button {
   width: 100%;
   font-size: 50px;
   font-weight: bold;
-  background-color: #f5b82e;
+  background-color: #ffeb3b;
   word-wrap: break-word;
   padding-top: 10px;
   padding-bottom: 10px;
@@ -69,12 +74,12 @@ button {
   margin: auto;
 }
 
-.buttons {
-  padding-top: 20px;
+.MuiButtonGroup-root {
+  margin: 20px;
 }
 
-.buttons [type="button"],
-.buttons [type="reset"] {
-  font-size: 20px;
-  padding: 20px;
+.alertField {
+  padding: 20px 20px 0px 20px;
+  justify-content: center;
+  display: flex;
 }

@@ -1,9 +1,17 @@
 import React, { useState } from "react";
+
+import { TextField, Button, FormGroup } from "@mui/material";
+import Alert from "@mui/material/Alert";
+import Collapse from "@mui/material/Collapse";
+import EditIcon from "@mui/icons-material/Edit";
+import AddBoxIcon from "@mui/icons-material/AddBox";
+
 import "./css/focus.css";
 
 export default function Focus(props) {
   const [formInput, setFormInput] = useState(true);
-  const [modifyInput, setModifyInput] = useState(false);
+  const [editButton, setEditButton] = useState(true);
+  const [alert, setAlert] = useState(false);
 
   const handleAddFocus = (e) => {
     e.preventDefault();
@@ -14,20 +22,21 @@ export default function Focus(props) {
     e.preventDefault();
 
     if (props.input.trim() === "") {
-      alert("The focus question field is empty, please add your own question!");
+      setAlert(true);
     } else {
       setFormInput(false);
-      setModifyInput(true);
+      setEditButton(false);
+      setAlert(false);
+      props.setAlertStart(false);
     }
   };
 
   const handleModify = (e) => {
     setFormInput(true);
-    setModifyInput(false);
+    setEditButton(true);
   };
 
   const formField = formInput ? "showForm" : "hideForm";
-  const modifyButton = modifyInput ? "showButton" : "hideButton";
 
   return (
     <div className="focus">
@@ -39,17 +48,33 @@ export default function Focus(props) {
         onSubmit={handleSetFocus}
         required
       >
-        <input
-          type="text"
-          className="focusField"
-          value={props.input}
-          onChange={handleAddFocus}
-        />
-        <input type="submit" className="focusButton" value="Set" />
+        <FormGroup className="groupField" row>
+          <TextField
+            id="focusText"
+            type="text"
+            variant="standard"
+            size="medium"
+            value={props.input}
+            onChange={handleAddFocus}
+          />
+          <Button variant="contained" startIcon={<AddBoxIcon />} type="submit">
+            Set
+          </Button>
+        </FormGroup>
       </form>
-      <button type="button" className={modifyButton} onClick={handleModify}>
-        Modify your focus question
-      </button>
+      <Collapse in={alert}>
+        <Alert severity="info" variant="filled">
+          The focus question field is empty, please add your own question!
+        </Alert>
+      </Collapse>
+      <Button
+        disabled={editButton}
+        variant="contained"
+        startIcon={<EditIcon />}
+        onClick={handleModify}
+      >
+        Edit
+      </Button>
     </div>
   );
 }

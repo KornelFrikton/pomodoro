@@ -34,9 +34,12 @@ Used third-party libraries:
 
 - react-router-dom: building the navbar of the application
 
+- material-ui: building design components
+
 ## Version
 
 *1.0 - 20/02/2022* - Publishing of the application
+*1.1 - 09/04/2022* - Improving design with Material UI
 
 ## Author
 

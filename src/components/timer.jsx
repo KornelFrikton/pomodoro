@@ -1,6 +1,9 @@
 import React from "react";
 import "./css/timer.css";
 
+import { Button } from "@mui/material";
+import AddBoxIcon from "@mui/icons-material/AddBox";
+
 export default function Timer(props) {
   //Pomodoro Time settings
   const handleAddPTime = (e) => {
@@ -82,7 +85,14 @@ export default function Timer(props) {
             onChange={handleAddLTime}
           />
         </div>
-        <input type="submit" className="timeButton" value="Set time" />
+        <Button
+          id="setTimeButton"
+          variant="contained"
+          startIcon={<AddBoxIcon />}
+          type="submit"
+        >
+          Set time
+        </Button>
       </form>
     </div>
   );

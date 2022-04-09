@@ -1,38 +1,19 @@
-.hideForm,
-.hideButton {
+.hideForm {
   display: none;
 }
 
-input[type="text"] {
-  padding: 10px;
-  min-width: 300px;
-  border-radius: 0px;
-  border-style: hidden;
-  font-size: 16px;
-}
-
-input[type="text"]:focus {
-  outline: none;
-}
-
-input[type="submit"],
-button {
-  padding: 10px;
-  border-radius: 0px;
-  border: 0px;
-  border-style: hidden;
-  font-weight: bold;
-  font-size: 16px;
-  background: #f5b82e;
-}
-
-input[type="submit"]:hover,
-button:hover {
-  color: white;
-  cursor: pointer;
-}
-
 .focus {
-  padding: 20px;
-  width: 100%;
+  padding: 20px 20px 0px 20px;
+}
+
+#focusText {
+  background-color: white;
+  padding: 5px;
+  min-width: 300px;
+  margin: 5px 0px;
+}
+
+.groupField {
+  justify-content: center;
+  padding: 0px 0px 10px 0px;
 }

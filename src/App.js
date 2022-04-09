@@ -9,12 +9,34 @@ import Focus from "./components/focus";
 import Timer from "./components/timer";
 
 import "./App.css";
-import 'react-circular-progressbar/dist/styles.css';
+import "react-circular-progressbar/dist/styles.css";
 import pomodoro from "./image/pomodoro.jpg";
 import uplifting from "./mp3/uplifting-bells.mp3";
 import happy from "./mp3/happy-bells.mp3";
 
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { yellow } from "@mui/material/colors";
+import Tabs from "@mui/material/Tabs";
+import Tab from "@mui/material/Tab";
+import AppBar from "@mui/material/AppBar";
+import Button from "@mui/material/Button";
+import ButtonGroup from "@mui/material/ButtonGroup";
+import CancelPresentationIcon from "@mui/icons-material/CancelPresentation";
+import Alert from "@mui/material/Alert";
+import Collapse from "@mui/material/Collapse";
+
 function App() {
+  const theme = createTheme({
+    palette: {
+      primary: yellow,
+      secondary: {
+        main: "#000000",
+      },
+    },
+  });
+
+  const [alertStart, setAlertStart] = useState(false);
+
   //Focus
   const [focusField, setFocusField] = useState("");
 
@@ -48,7 +70,7 @@ function App() {
   //Start button
   const handleStart = (e) => {
     if (focusField === "") {
-      alert("Please set the focus question before start!");
+      setAlertStart(true);
     } else {
       setCount(true);
       new Audio(uplifting).play();
@@ -125,7 +147,7 @@ function App() {
         const timeST = new Date(ST).toUTCString();
         const newtimeST = timeST.substring(17, 25);
         setShortBreak(newtimeST);
-        
+
         if (ST === 0) {
           new Audio(uplifting).play();
           setST(totalST);
@@ -180,163 +202,204 @@ function App() {
   const shortField = shortClass ? "showTimer" : "hideTimer";
   const longField = longClass ? "showTimer" : "hideTimer";
 
+  const [valueTab, setValueTab] = useState(5);
+
+  const handleTabChange = (event, newValue) => {
+    setValueTab(newValue);
+  };
+
+  const handleCloseTab = () => {
+    setValueTab(5);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1 className="title">The One Thing</h1>
-        <div className="logo">
-          <img src={pomodoro} alt="Pomodoro" />
-        </div>
-        <div className="menu">
-          <HashRouter>
-            <div>
-              <Link to="/introduction">Introduction</Link>
-            </div>
-            <div>
-              <Link to="/howtouse">How to use</Link>
-            </div>
-            <div>
-              <Link to="/focus">Focus</Link>
-            </div>
-            <div>
-              <Link to="/timer">Timer</Link>
-            </div>
-            <div>
-              <Link to="/colorsettings">Color settings</Link>
-            </div>
-            <div>
-              <Link to="/#">Close</Link>
-            </div>
-            <Routes>
-              <Route path="/introduction" element={<Introduction />} />
-              <Route path="/howtouse" element={<HowToUse />} />
-              <Route
-                path="/focus"
-                element={
-                  <Focus input={focusField} handleFocusClick={setFocusField} />
-                }
-              />
-              <Route
-                path="/timer"
-                element={
-                  <Timer
-                    pomodoroTime={pomodoroTime}
-                    inputPTime={pomodoroTime}
-                    handlePTimeClick={setPomodoroTime}
-                    inputSTime={shortBreak}
-                    handleSTimeClick={setShortBreak}
-                    inputLTime={longBreak}
-                    handleLTimeClick={setLongBreak}
-                    handlePT={setPT}
-                    handleST={setST}
-                    handleLT={setLT}
-                    handlePTotal={setTotalPT}
-                    handleSTotal={setTotalST}
-                    handleLTotal={setTotalLT}
+    <ThemeProvider theme={theme}>
+      <div className="App">
+        <header className="App-header">
+          <h1 className="title">The One Thing</h1>
+          <div className="logo">
+            <img src={pomodoro} alt="Pomodoro" />
+          </div>
+          <div className="menu">
+            <HashRouter>
+              <AppBar position="static" color="secondary">
+                <Tabs
+                  value={valueTab}
+                  onChange={handleTabChange}
+                  textColor="primary"
+                  centered
+                  TabIndicatorProps={{ sx: { display: "none" } }}
+                >
+                  <Tab
+                    component={Link}
+                    to="/introduction"
+                    label="Introduction"
                   />
-                }
-              />
-              <Route
-                path="/colorsettings"
-                element={
-                  <ColorSettings
-                    onColorSelectBackground={handleColorBackground}
-                    onColorSelectFont={handleColorFont}
-                    onColorSelectBar={handleColorBar}
+                  <Tab component={Link} to="/howtouse" label="How to use" />
+                  <Tab component={Link} to="/focus" label="Focus" />
+                  <Tab component={Link} to="/timer" label="Timer" />
+                  <Tab
+                    component={Link}
+                    to="/colorsettings"
+                    label="Color settings"
                   />
-                }
-              />
-            </Routes>
-          </HashRouter>
-        </div>
-      </header>
+                  <Tab
+                    icon={<CancelPresentationIcon fontSize="large" />}
+                    component={Link}
+                    to="/"
+                    onClick={handleCloseTab}
+                  />
+                </Tabs>
+              </AppBar>
+              <Routes>
+                <Route path="/introduction" element={<Introduction />} />
+                <Route path="/howtouse" element={<HowToUse />} />
+                <Route
+                  path="/focus"
+                  element={
+                    <Focus
+                      input={focusField}
+                      handleFocusClick={setFocusField}
+                      setAlertStart={setAlertStart}
+                    />
+                  }
+                />
+                <Route
+                  path="/timer"
+                  element={
+                    <Timer
+                      pomodoroTime={pomodoroTime}
+                      inputPTime={pomodoroTime}
+                      handlePTimeClick={setPomodoroTime}
+                      inputSTime={shortBreak}
+                      handleSTimeClick={setShortBreak}
+                      inputLTime={longBreak}
+                      handleLTimeClick={setLongBreak}
+                      handlePT={setPT}
+                      handleST={setST}
+                      handleLT={setLT}
+                      handlePTotal={setTotalPT}
+                      handleSTotal={setTotalST}
+                      handleLTotal={setTotalLT}
+                    />
+                  }
+                />
+                <Route
+                  path="/colorsettings"
+                  element={
+                    <ColorSettings
+                      onColorSelectBackground={handleColorBackground}
+                      onColorSelectFont={handleColorFont}
+                      onColorSelectBar={handleColorBar}
+                    />
+                  }
+                />
+                <Route path="/" />
+              </Routes>
+            </HashRouter>
+          </div>
+        </header>
 
-      <div className="mainArea">
-        <div
-          className="focusQuestion"
-          style={{
-            backgroundColor: `rgba(${background.r}, ${background.g}, ${background.b}, ${background.a})`,
-            color: `rgba(${font.r}, ${font.g}, ${font.b}, ${font.a})`,
-          }}
-        >
-          {focusField}
-        </div>
+        <div className="mainArea">
+          <div
+            className="focusQuestion"
+            style={{
+              backgroundColor: `rgba(${background.r}, ${background.g}, ${background.b}, ${background.a})`,
+              color: `rgba(${font.r}, ${font.g}, ${font.b}, ${font.a})`,
+            }}
+          >
+            {focusField}
+          </div>
 
-        <div className={pomodoroField} style={{ width: "50%" }}>
-          <h2> {round}. Pomodoro time</h2>
-          <CircularProgressbar
-            value={PT}
-            maxValue={totalPT}
-            text={pomodoroTime}
-            styles={buildStyles({
-              // Rotation of path and trail, in number of turns (0-1)
-              rotation: 0.25,
-              // Whether to use rounded or flat corners on the ends - can use 'butt' or 'round'
-              strokeLinecap: "butt",
-              // Text size
-              textSize: "16px",
-              // How long animation takes to go from one percentage to another, in seconds
-              pathTransitionDuration: 1,
-              // Can specify path transition in more detail, or remove it entirely
-              // pathTransition: 'none',
-              // Colors
-              pathColor: `rgba(${bar.r}, ${bar.g}, ${bar.b}, ${PT / 100})`,
-              textColor: "#000000",
-              trailColor: "#d6d6d6",
-              backgroundColor: "#3e98c7",
-            })}
-          />
-        </div>
+          <div className={pomodoroField} style={{ width: "50%" }}>
+            <h1> {round}. Pomodoro time</h1>
+            <CircularProgressbar
+              value={PT}
+              maxValue={totalPT}
+              text={pomodoroTime}
+              styles={buildStyles({
+                // Rotation of path and trail, in number of turns (0-1)
+                rotation: 0.25,
+                // Whether to use rounded or flat corners on the ends - can use 'butt' or 'round'
+                strokeLinecap: "butt",
+                // Text size
+                textSize: "16px",
+                // How long animation takes to go from one percentage to another, in seconds
+                pathTransitionDuration: 1,
+                // Can specify path transition in more detail, or remove it entirely
+                // pathTransition: 'none',
+                // Colors
+                pathColor: `rgba(${bar.r}, ${bar.g}, ${bar.b}, ${PT / 100})`,
+                textColor: "#000000",
+                trailColor: "#d6d6d6",
+                backgroundColor: "#3e98c7",
+              })}
+            />
+          </div>
 
-        <div className={shortField} style={{ width: "50%" }}>
-          <h2> {round}. Short break</h2>
-          <CircularProgressbar
-            value={ST}
-            maxValue={totalST}
-            text={shortBreak}
-            styles={buildStyles({
-              rotation: 0.25,
-              strokeLinecap: "butt",
-              textSize: "16px",
-              pathTransitionDuration: 1,
-              pathColor: `rgba(${bar.r}, ${bar.g}, ${bar.b}, ${ST / 100})`,
-              textColor: "#000000",
-              trailColor: "#d6d6d6",
-              backgroundColor: "#3e98c7",
-            })}
-          />
-        </div>
-        <div className={longField} style={{ width: "50%" }}>
-          <h2> {round}. Long break</h2>
-          <CircularProgressbar
-            value={LT}
-            maxValue={totalLT}
-            text={longBreak}
-            styles={buildStyles({
-              rotation: 0.25,
-              strokeLinecap: "butt",
-              textSize: "16px",
-              pathTransitionDuration: 1,
-              pathColor: `rgba(${bar.r}, ${bar.g}, ${bar.b}, ${LT / 100})`,
-              textColor: "#000000",
-              trailColor: "#d6d6d6",
-              backgroundColor: "#3e98c7",
-            })}
-          />
-        </div>
-        <div className="buttons">
-          <button type="button" onClick={handleStart}>
-            Start
-          </button>
-          <button type="button" onClick={handlePause}>
-            Pause
-          </button>
-          <button type="reset" onClick={handleReset}>
-            Reset
-          </button>
+          <div className={shortField} style={{ width: "50%" }}>
+            <h1> {round}. Short break</h1>
+            <CircularProgressbar
+              value={ST}
+              maxValue={totalST}
+              text={shortBreak}
+              styles={buildStyles({
+                rotation: 0.25,
+                strokeLinecap: "butt",
+                textSize: "16px",
+                pathTransitionDuration: 1,
+                pathColor: `rgba(${bar.r}, ${bar.g}, ${bar.b}, ${ST / 100})`,
+                textColor: "#000000",
+                trailColor: "#d6d6d6",
+                backgroundColor: "#3e98c7",
+              })}
+            />
+          </div>
+          <div className={longField} style={{ width: "50%" }}>
+            <h1> {round}. Long break</h1>
+            <CircularProgressbar
+              value={LT}
+              maxValue={totalLT}
+              text={longBreak}
+              styles={buildStyles({
+                rotation: 0.25,
+                strokeLinecap: "butt",
+                textSize: "16px",
+                pathTransitionDuration: 1,
+                pathColor: `rgba(${bar.r}, ${bar.g}, ${bar.b}, ${LT / 100})`,
+                textColor: "#000000",
+                trailColor: "#d6d6d6",
+                backgroundColor: "#3e98c7",
+              })}
+            />
+          </div>
+          <div className="alertField">
+            <Collapse in={alertStart}>
+              <Alert severity="info" variant="filled">
+                The focus question field is empty, please add your own question!
+              </Alert>
+            </Collapse>
+          </div>
+          <div className="buttons">
+            <ButtonGroup
+              variant="contained"
+              size="large"
+              aria-label="button group"
+            >
+              <Button type="button" onClick={handleStart}>
+                Start
+              </Button>
+              <Button type="button" onClick={handlePause}>
+                Pause
+              </Button>
+              <Button type="reset" onClick={handleReset}>
+                Reset
+              </Button>
+            </ButtonGroup>
+          </div>
         </div>
       </div>
-    </div>
+    </ThemeProvider>
   );
 }
 
