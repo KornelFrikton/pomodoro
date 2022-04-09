@@ -38,7 +38,7 @@ Used third-party libraries:
 
 ## Version
 
-*1.0 - 20/02/2022* - Publishing of the application
+*1.0 - 20/02/2022* - Publishing of the application  
 *1.1 - 09/04/2022* - Improving design with Material UI
 
 ## Author
