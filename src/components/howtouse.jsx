@@ -1,9 +1,9 @@
 import React from "react";
-import "./css/howtouse.css";
+import styles from "./css/howtouse.module.css";
 
 export default function HowToUse() {
   return (
-    <div className="howToUse">
+    <div className={styles.howToUse}>
       <h1>How to use this application?</h1>
       <ul>
         <li>

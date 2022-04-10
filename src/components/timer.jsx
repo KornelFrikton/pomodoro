@@ -1,5 +1,5 @@
 import React from "react";
-import "./css/timer.css";
+import styles from "./css/timer.module.css";
 
 import { Button } from "@mui/material";
 import AddBoxIcon from "@mui/icons-material/AddBox";
@@ -49,7 +49,7 @@ export default function Timer(props) {
   };
 
   return (
-    <div className="timer">
+    <div className={styles.timer}>
       <h1>Set the timers</h1>
       <form action="#" className="form" method="GET" onSubmit={handleSetTime}>
         <h3>Pomodoro time set</h3>
@@ -86,7 +86,7 @@ export default function Timer(props) {
           />
         </div>
         <Button
-          id="setTimeButton"
+          className={styles.setTimeButton}
           variant="contained"
           startIcon={<AddBoxIcon />}
           type="submit"

@@ -6,7 +6,7 @@ import Collapse from "@mui/material/Collapse";
 import EditIcon from "@mui/icons-material/Edit";
 import AddBoxIcon from "@mui/icons-material/AddBox";
 
-import "./css/focus.css";
+import styles from "./css/focus.module.css";
 
 export default function Focus(props) {
   const [formInput, setFormInput] = useState(true);
@@ -36,10 +36,10 @@ export default function Focus(props) {
     setEditButton(true);
   };
 
-  const formField = formInput ? "showForm" : "hideForm";
+  const formField = formInput ? styles.showForm : styles.hideForm;
 
   return (
-    <div className="focus">
+    <div className={styles.focus}>
       <h1>Set your focus question</h1>
       <form
         action="#"
@@ -48,9 +48,9 @@ export default function Focus(props) {
         onSubmit={handleSetFocus}
         required
       >
-        <FormGroup className="groupField" row>
+        <FormGroup className={styles.groupField} row>
           <TextField
-            id="focusText"
+            id={styles.focusText}
             type="text"
             variant="standard"
             size="medium"

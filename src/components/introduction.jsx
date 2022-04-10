@@ -1,9 +1,9 @@
 import React from "react";
-import "./css/introduction.css";
+import styles from "./css/introduction.module.css";
 
 export default function Introduction() {
   return (
-    <div className="introduction">
+    <div className={styles.introduction}>
       <h1>Philosophy behind The One Thing habit</h1>
       <p>
         The most successful people are also the most productive. They are the

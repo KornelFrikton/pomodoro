@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import CirclePicker from "react-color";
-import "./css/colorsettings.css";
+import styles from "./css/colorsettings.module.css";
 
 export default function ColorSettings(props) {
   const [background, setBackground] = useState("#F5B82E");
@@ -32,18 +32,18 @@ export default function ColorSettings(props) {
   };
 
   return (
-    <div className="settings">
+    <div className={styles.settings}>
       <h1>Color settings</h1>
-      <div className="colorSettings">
-        <div className="colorField">
+      <div className={styles.colorSettings}>
+        <div className={styles.colorField}>
           <h3>Background color</h3>
           <CirclePicker color={background} onChange={onChangeBackground} />
         </div>
-        <div className="colorField">
+        <div className={styles.colorField}>
           <h3>Font color</h3>
           <CirclePicker color={fontColor} onChange={onChangeFont} />
         </div>
-        <div className="colorField">
+        <div className={styles.colorField}>
           <h3>Progress bar color</h3>
           <CirclePicker color={barColor} onChange={onChangeBar} />
         </div>

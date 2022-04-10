@@ -8,7 +8,7 @@ import ColorSettings from "./components/colorsettings";
 import Focus from "./components/focus";
 import Timer from "./components/timer";
 
-import "./App.css";
+import styles from "./components/css/app.module.css";
 import "react-circular-progressbar/dist/styles.css";
 import pomodoro from "./image/pomodoro.jpg";
 import uplifting from "./mp3/uplifting-bells.mp3";
@@ -31,6 +31,18 @@ function App() {
       primary: yellow,
       secondary: {
         main: "#000000",
+      },
+    },
+    components: {
+      // Name of the component
+      MuiTabs: {
+        styleOverrides: {
+          // Name of the slot
+          flexContainer: {
+            // Some CSS
+            flexWrap: "wrap",
+          },
+        },
       },
     },
   });
@@ -198,9 +210,9 @@ function App() {
   };
 
   //Timer show/hide
-  const pomodoroField = pomodoClass ? "showTimer" : "hideTimer";
-  const shortField = shortClass ? "showTimer" : "hideTimer";
-  const longField = longClass ? "showTimer" : "hideTimer";
+  const pomodoroField = pomodoClass ? styles.showTimer : styles.hideTimer;
+  const shortField = shortClass ? styles.showTimer : styles.hideTimer;
+  const longField = longClass ? styles.showTimer : styles.hideTimer;
 
   const [valueTab, setValueTab] = useState(5);
 
@@ -214,15 +226,19 @@ function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <div className="App">
-        <header className="App-header">
-          <h1 className="title">The One Thing</h1>
-          <div className="logo">
+      <div className={styles.app}>
+        <header className={styles.appHeader}>
+          <h1 className={styles.title}>The One Thing</h1>
+          <div className={styles.logo}>
             <img src={pomodoro} alt="Pomodoro" />
           </div>
-          <div className="menu">
+          <div className={styles.menu}>
             <HashRouter>
-              <AppBar position="static" color="secondary">
+              <AppBar
+                className={styles.tabs}
+                position="static"
+                color="secondary"
+              >
                 <Tabs
                   value={valueTab}
                   onChange={handleTabChange}
@@ -300,9 +316,9 @@ function App() {
           </div>
         </header>
 
-        <div className="mainArea">
+        <div>
           <div
-            className="focusQuestion"
+            className={styles.focusQuestion}
             style={{
               backgroundColor: `rgba(${background.r}, ${background.g}, ${background.b}, ${background.a})`,
               color: `rgba(${font.r}, ${font.g}, ${font.b}, ${font.a})`,
@@ -373,14 +389,14 @@ function App() {
               })}
             />
           </div>
-          <div className="alertField">
+          <div className={styles.alertField}>
             <Collapse in={alertStart}>
               <Alert severity="info" variant="filled">
                 The focus question field is empty, please add your own question!
               </Alert>
             </Collapse>
           </div>
-          <div className="buttons">
+          <div className={styles.buttonGroup}>
             <ButtonGroup
               variant="contained"
               size="large"

@@ -1,5 +1,24 @@
-.App {
+.app {
   text-align: center;
+}
+
+.title {
+  font-size: 60px;
+}
+
+.logo img {
+  width: 100%;
+  display: block;
+}
+
+.appHeader {
+  background-color: #000000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  color: white;
+  flex-wrap: wrap;
 }
 
 a:link,
@@ -16,20 +35,16 @@ a:hover {
   color: #f5b82e;
 }
 
-.MuiTabs-flexContainer {
-  flex-wrap: wrap;
+.tabs {
   border-top: 1px solid white;
   border-bottom: 1px solid white;
 }
 
 .menu {
-  width: 100%;
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
-  text-align: center;
   justify-content: center;
-  padding-bottom: 20px;
   background-color: #000000;
 }
 
@@ -37,49 +52,24 @@ a:hover {
   display: none;
 }
 
-button {
-  padding: 10px;
-}
-
-.App-header {
-  background-color: #000000;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-around;
-  color: white;
-  flex-wrap: wrap;
-}
-
-.title {
-  font-size: 60px;
-}
-
-.logo img {
-  width: 100%;
-  display: block;
-}
-
 .focusQuestion {
-  width: 100%;
   font-size: 50px;
   font-weight: bold;
   background-color: #ffeb3b;
   word-wrap: break-word;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  padding: 10px;
 }
 
 .showTimer {
   margin: auto;
 }
 
-.MuiButtonGroup-root {
-  margin: 20px;
+.buttonGroup {
+  margin-bottom: 20px;
 }
 
 .alertField {
-  padding: 20px 20px 0px 20px;
+  padding: 20px;
   justify-content: center;
   display: flex;
 }
